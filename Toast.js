@@ -1,0 +1,5 @@
+const newElement=document.createElement("ul");newElement.setAttribute("class","notifications");const parentElement=document.getElementsByTagName("body")[0];parentElement.appendChild(newElement);const notifications=document.querySelector(".notifications"),toastDetails={success:{icon:"fa-circle-check"},error:{icon:"fa-circle-xmark"},warning:{icon:"fa-triangle-exclamation"},info:{icon:"fa-circle-info"}},removeToast=e=>{e.classList.add("hide"),e.timeoutId&&clearTimeout(e.timeoutId),setTimeout(()=>e.remove(),300)},createToast=(e,t,a)=>{let{icon:i}=toastDetails[e],n=document.createElement("li");n.className=`toast ${e}`,n.innerHTML=`<div class="column">
+                         <i class="fa-solid ${i}"></i>
+                         <span>${t}</span>
+                      </div>
+                      <i class="fa-solid fa-xmark" onclick="removeToast(this.parentElement)"></i>`,notifications.appendChild(n),n.timeoutId=setTimeout(()=>removeToast(n),a)};function ToastMessage(e,t,a=4e3,i="top-right"){newElement.classList.add(i),createToast(e,t,a)}
